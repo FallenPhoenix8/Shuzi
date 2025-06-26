@@ -6,30 +6,37 @@
 //
 
 import XCTest
+@testable import Shuzi
 
 final class ShuziTests: XCTestCase {
+    func testMyMax() throws {
+        // Setup data
+        let pairs: [(Int, Int)] = [(3, 10), (4, -12)]
+        let triples = [(5, 20, 21)]
+        let singles = [2]
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+        // Expected values
+        let expected: [String: [Int]] = [
+            "pairs": [10, 4],
+            "triples": [21],
+            "singles": [2]
+        ]
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        // Tests
+        for (index, (a, b)) in pairs.enumerated() {
+            
+            let expectedValue = expected["pairs"]![index]
+            XCTAssertEqual(myMax(a, b), expectedValue)
+        }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        for (index, (a, b, c)) in triples.enumerated() {
+            let expectedValue = expected["triples"]![index]
+            XCTAssertEqual(myMax(a, b, c), expectedValue)
+        }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+        for (index, value) in singles.enumerated() {
+            let expectedValue = expected["singles"]![index]
+            XCTAssertEqual(myMax(value), expectedValue)
         }
     }
-
 }
