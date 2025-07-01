@@ -60,12 +60,11 @@ struct GameModel {
         do {
             initialAlternatives = try Int.generateUniqueRandomIntegers(count: 4, min: 0, max: 99)
         } catch {
-            print(error)
+            print("Error generating initial alternatives: \(error)")
         }
         
         guard let answer = initialAlternatives.last else {
-            print(initialAlternatives)
-            fatalError("Could not generate initial alternatives.")
+            fatalError("Failed to generate initial alternatives")
         }
         
         return GameModel(
