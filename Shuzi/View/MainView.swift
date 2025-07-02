@@ -21,6 +21,20 @@ struct MainView: View {
                 gVM.playRandomIncorrectSound()
             }
             
+            Button("7") {
+                gVM.playNumber(num: 7)
+            }
+            .padding()
+            
+            Button("30") {
+                gVM.playNumber(num: 30)
+            }
+            .padding()
+            
+            Button("74") {
+                gVM.playNumber(num: 74)
+            }
+            .padding()
         }
         .padding()
     }
