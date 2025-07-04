@@ -9,34 +9,26 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(GameViewModel.self) var gVM
+    @State private var showSettingsView = false
+    @State private var showPinyin: Bool = true
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Button("Success") {
-                gVM.playRandomSuccessSound()
+        ZStack {
+            GearIconView(showSettingsView: $showSettingsView)
+
+            VStack {
+                ScoreView(
+                    score: gVM.gameModel.score,
+                    maxTurns: gVM.gameModel.maxTurns
+                )
+                .padding()
+                
+                Toggle(showPinyin ? "Hide Pinyin": "Show Pinyin", isOn: $showPinyin.animation())
+                    .padding(.horizontal)
+                Spacer()
             }
-            Button("Incorrect") {
-                gVM.playRandomIncorrectSound()
-            }
-            
-            Button("7") {
-                gVM.playNumber(num: 7)
-            }
-            .padding()
-            
-            Button("30") {
-                gVM.playNumber(num: 30)
-            }
-            .padding()
-            
-            Button("74") {
-                gVM.playNumber(num: 74)
-            }
-            .padding()
+            .padding(.vertical)
         }
-        .padding()
     }
 }
 
