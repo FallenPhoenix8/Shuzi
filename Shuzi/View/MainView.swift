@@ -41,6 +41,12 @@ struct MainView: View {
                     }
                 }
                 
+                NumberOptionsView(
+                    numbers: gVM.gameModel.alternatives, answer: gVM.gameModel.answer)
+                .onChange(of: gVM.gameModel.turns) { _, _ in
+                    gVM.gameModel.generateNewProblem()
+                }
+                
                 Spacer()
             }
             .padding(.vertical)
