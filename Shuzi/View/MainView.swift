@@ -11,7 +11,7 @@ struct MainView: View {
     @Environment(GameViewModel.self) var gVM
     @State private var showSettingsView = false
     @State private var showPinyin: Bool = true
-    
+
     var body: some View {
         ZStack {
             GearIconView(showSettingsView: $showSettingsView)
@@ -22,9 +22,25 @@ struct MainView: View {
                     maxTurns: gVM.gameModel.maxTurns
                 )
                 .padding()
-                
-                Toggle(showPinyin ? "Hide Pinyin": "Show Pinyin", isOn: $showPinyin.animation())
+
+                Toggle(showPinyin ? "Hide Pinyin" : "Show Pinyin", isOn: $showPinyin.animation())
                     .padding(.horizontal)
+
+                if let chineseNum = Chinese.num99ToChinese(gVM.gameModel.answer) {
+                    
+                    Spacer()
+                    
+                    Text(chineseNum.chinese)
+                        .font(showPinyin ? .title : .largeTitle)
+                        .fontWeight(.semibold)
+                    
+                    if showPinyin {
+                        Text(chineseNum.pinyin)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                    }
+                }
+                
                 Spacer()
             }
             .padding(.vertical)
