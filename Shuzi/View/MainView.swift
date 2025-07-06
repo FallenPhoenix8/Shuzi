@@ -46,6 +46,7 @@ struct MainView: View {
                 .onChange(of: gVM.gameModel.turns) { _, _ in
                     gVM.gameModel.generateNewProblem()
                 }
+                .padding(.horizontal)
                 
                 Spacer()
             }
