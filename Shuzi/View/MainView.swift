@@ -11,6 +11,12 @@ struct MainView: View {
     @Environment(GameViewModel.self) var gVM
     @State private var showSettingsView = false
     @State private var showPinyin: Bool = true
+    
+    @State private var done: Bool = false
+    
+    var gameOver: Bool {
+        gVM.gameModel.gameWon
+    }
 
     var body: some View {
         ZStack {
@@ -51,6 +57,12 @@ struct MainView: View {
                 Spacer()
             }
             .padding(.vertical)
+        }
+        .fullScreenCover(isPresented: $done) {
+            GameOverView(color: .green.opacity(0.8))
+        }
+        .onChange(of: gameOver) { _, _ in
+            done = gameOver
         }
     }
 }
