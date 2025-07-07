@@ -40,6 +40,7 @@ struct GameModel {
     
     /// Resets game score and turns
     mutating func reset() {
+        generateNewProblem()
         score = 0
         turns = 0
     }
