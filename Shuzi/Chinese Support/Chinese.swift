@@ -7,6 +7,12 @@
 
 import Foundation
 
+extension Int {
+    func num99ToChinese() -> Chinese.ChineseNumber? {
+        Chinese.num99ToChinese(self)
+    }
+}
+
 /// A utility class for converting numbers from 0 to 99 into their Chinese numeral and pinyin representations.
 class Chinese {
     /// Converts an integer from 0 to 99 into its Chinese numeral and pinyin pronunciation.

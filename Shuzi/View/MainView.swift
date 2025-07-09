@@ -32,7 +32,7 @@ struct MainView: View {
                 Toggle(showPinyin ? "Hide Pinyin" : "Show Pinyin", isOn: $showPinyin.animation())
                     .padding(.horizontal)
 
-                if let chineseNum = Chinese.num99ToChinese(gVM.gameModel.answer) {
+                if let chineseNum = gVM.gameModel.answer.num99ToChinese() {
                     
                     Spacer()
                     
